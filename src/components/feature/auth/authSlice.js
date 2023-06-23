@@ -1,39 +1,38 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    user: {
-      token: null,
-      email: null,
-      userId: null,
-    },
-  };
-  
-  export const userSlice = createSlice({
-    email: "userData",
-    initialState,
-    reducers: {
-      userLogin: (state, action) => {
-        console.log("updated user data", action);
-        state.user = action.payload;
-      },
+  user: {
+    token: null,
+    email: null,
+    userId: null,
+  },
+};
 
-      userLogout: (state, action) => {
-        state.user = {
-          token: null,
-          email: null,
-          userId: null,
-        };
-      },
+export const userSlice = createSlice({
+  email: "userData",
+  initialState,
+  reducers: {
+    userLogin: (state, action) => {
+      console.log("updated user data", action);
+      state.user = action.payload;
     },
-  });
-  
-  //export actions
-  
-  export const { userLogin, userLogout } = userSlice.actions;
-  
-  //export selector
-  
-  export const selectUser = (state) => state.userData.user;
-  
-  export default userSlice.reducer;
-  
+
+    userLogout: (state, action) => {
+      state.user = {
+        token: null,
+        email: null,
+        userId: null,
+      };
+    },
+  },
+});
+
+//export actions
+
+export const { userLogin, userLogout } = userSlice.actions;
+
+//export selector
+
+export const selectUser = (state) => state.userData.user;
+
+export default userSlice.reducer;
