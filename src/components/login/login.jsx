@@ -114,17 +114,20 @@ const Login = () => {
                 >
                   Login
                 </Button>
-                <Link to={"/auth/register"} style={{ textDecoration: "none" }}>
-                  <p className="mt-2">
-                    Don't have an Account?{" "}
-                    <span
-                      style={{ color: "red", textDecoration: "none" }}
-                      href=""
+                <p className="mt-2">
+                  Don't have an Account?{" "}
+                  <span
+                    style={{ color: "red", textDecoration: "none" }}
+                    href="">
+                    <Link
+                      to={"/auth/register"}
+                      style={{ textDecoration: "none" }}
                     >
-                      Register here
-                    </span>
-                  </p>
-                </Link>
+                      {" "}
+                      Register here{" "}
+                    </Link>
+                  </span>
+                </p>
               </Form>
             </div>
           </Col>

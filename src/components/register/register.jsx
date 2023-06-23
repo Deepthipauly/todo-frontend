@@ -127,15 +127,14 @@ const Register = () => {
                     ""
                   )}
                 </div>
-                <Link to={"/auth/login"}>
-                  <Button
-                    className="me-3 btn btn-primary"
-                    size="md"
-                    type="submit"
-                  >
-                    Register
-                  </Button>
-                </Link>
+
+                <Button
+                  className="me-3 btn btn-primary"
+                  size="md"
+                  type="submit"
+                >
+                  Register
+                </Button>
                 <p>
                   already have account?{" "}
                   <Link

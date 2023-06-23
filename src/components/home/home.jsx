@@ -14,7 +14,7 @@ function Home() {
                 TODO
               </h1>
             <Link to={"/auth/login"}>  <Button>Login</Button></Link>
-            <p>Don't have an account? <Link to={"/auth/register"}>  Register Now </Link></p>
+            <p>Don't have an account? <Link to={"/auth/register"} style={{ textDecoration: "none", color: "red" }}>  Register Now </Link></p>
             </div>
           </div>
         </Col>
