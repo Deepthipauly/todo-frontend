@@ -10,17 +10,22 @@ function TodoList() {
       <Row>
         <Col>
           <h3 className="d-flex justify-content-center m-4">MY TODOS</h3>
-
-<Button><i class="fa-solid fa-plus fa-beat fa-sm"></i></Button>
-
+          <Button>
+            <i className="fa-solid fa-plus fa-beat fa-sm"></i>
+          </Button>
           <div className="mt-2">
             <InputGroup className="mb-3">
-            <InputGroup.Text id="basic-addon1"><b>Status</b></InputGroup.Text>
+              <InputGroup.Text id="basic-addon1">
+                <b>Status</b>
+              </InputGroup.Text>
               <Form.Control
                 placeholder={""}
                 aria-label="Username"
                 aria-describedby="basic-addon1"
               />
+               <InputGroup.Text>
+               <i className="fa-solid fa-trash fa-fade"></i>
+              </InputGroup.Text>
             </InputGroup>
           </div>
         </Col>

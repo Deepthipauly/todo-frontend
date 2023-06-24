@@ -48,7 +48,7 @@ const Login = () => {
 
         alert("Login Successfully");
         // navigate to home
-        navigate("/todo");
+        navigate("/todos");
       } catch (error) {
         console.error("error", error);
         alert(error.response.data.error || "something went wrong");
