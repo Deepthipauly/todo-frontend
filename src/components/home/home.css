@@ -1,4 +1,12 @@
-.headingHover:hover{
-color: #e83283;
+.headingHover:hover {
+    color: #e83283;
+}
 
+.linkStyle {
+    text-decoration: none;
+    color: rgb(3, 3, 14);
+}
+
+.container {
+    font-family: "Crimson Text";
 }

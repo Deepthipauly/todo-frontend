@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <Container style={{ fontFamily: "Crimson Text" }}>
+    <Container className="container">
       <Row className="align-items-center" style={{ height: "100vh" }}>
         <Col className="my-auto">
           <div className="d-flex justify-content-center">
@@ -13,8 +13,15 @@ function Home() {
               <h1 className="animate__animated animate__bounce headingHover">
                 TODO
               </h1>
-            <Link to={"/auth/login"}>  <Button>Login</Button></Link>
-            <p>Don't have an account? <Link to={"/auth/register"} style={{ textDecoration: "none", color: "red" }}>  Register Now </Link></p>
+              <Link to={"/auth/login"}>
+                <Button>Login</Button>
+              </Link>
+              <p>
+                Don't have an account?{" "}
+                <Link to={"/auth/register"} className="linkStyle">
+                  Register Now
+                </Link>
+              </p>
             </div>
           </div>
         </Col>

@@ -136,10 +136,9 @@ const Register = () => {
                   Register
                 </Button>
                 <p>
-                  already have account?{" "}
-                  <Link
+                  Already have an account?{" "}
+                  <Link className="linkStyle"
                     to={"/auth/login"}
-                    style={{ textDecoration: "none", color: "#e83283" }}
                   >
                     Login here
                   </Link>

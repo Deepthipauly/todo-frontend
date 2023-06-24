@@ -9,7 +9,7 @@ const initialState = {
 };
 
 export const userSlice = createSlice({
-  email: "userData",
+  name: "userData",
   initialState,
   reducers: {
     userLogin: (state, action) => {

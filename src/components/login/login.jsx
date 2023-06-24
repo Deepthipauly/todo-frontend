@@ -9,6 +9,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { Link } from "react-router-dom";
+import "./login.css"
 
 const Login = () => {
   const navigate = useNavigate();
@@ -55,7 +56,7 @@ const Login = () => {
   });
   return (
     <div>
-      <Container style={{ fontFamily: "Crimson Text" }}>
+      <Container className="container">
         <Row className="align-items-center" style={{ height: "100vh" }}>
           <Col className="mx-auto" sm={10} md={8} lg={6}>
             <div
@@ -115,16 +116,13 @@ const Login = () => {
                   Login
                 </Button>
                 <p className="mt-2">
-                  Don't have an Account?{" "}
+                  Don't have an Account?
                   <span
-                    style={{ color: "red", textDecoration: "none" }}
                     href="">
-                    <Link
+                    <Link className="linkStyle"
                       to={"/auth/register"}
-                      style={{ textDecoration: "none" }}
                     >
-                      {" "}
-                      Register here{" "}
+                      Register here
                     </Link>
                   </span>
                 </p>
