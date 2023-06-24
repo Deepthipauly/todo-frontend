@@ -1,5 +1,4 @@
 .headerFont{
     cursor: pointer;
-    font-family: "Crimson Text",
-    
+    font-family: "Crimson Text" !important;
 }

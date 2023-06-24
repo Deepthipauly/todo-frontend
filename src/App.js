@@ -7,6 +7,8 @@ import Register from "./components/register/register";
 import TodoList from "./components/todoList/todoList";
 import Todo from "./components/todo/todo";
 import Header from "./components/layout/header";
+import Edit from "./components/edit/edit";
+
 
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -21,9 +23,15 @@ const router = createBrowserRouter([
   { path: "/todos", element: <><Header/> <TodoList /></> },
 
   {
-    path: "/view_todo/:id",
+    path: "/todo/:id",
     element: <><Header/> <Todo /></>,
   },
+
+{
+  path:"/edit/:id",
+  element:<><Header/> <Edit /></>
+}
+
 ]);
 
 function App() {
