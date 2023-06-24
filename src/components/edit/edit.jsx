@@ -1,25 +1,42 @@
+// package import
 import React,{useEffect, useState } from "react";
 import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import { Link,useParams } from "react-router-dom";
+
+// file import
 import { BACKEND_URL } from "../../constants/constant";
-import { selectUser, userLogin } from "../../feature/auth/authSlice";
+import { selectUser, userLogout } from "../../feature/auth/authSlice";
 
-
-const Login = () => {
-  const navigate = useNavigate();
+// Edit component
+const Edit = () => {
+  // component state
   const [myTitle, setMyTitle] = useState("");
   const [myDescription, setMyDescription] = useState("");
   const [status, setStatus] = useState("INPROGRESS");
+
+  // hooks
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const params = useParams();
+
+  // redux data
   const userData = useSelector(selectUser);
+ 
   useEffect(() => {
+    if(!userData.token){
+      dispatch(userLogout());
+      navigate("/");
+      return;
+    } 
+  // fetch a todo by id
     const gettingTodo = async () => {
       const response = await axios.get(`${BACKEND_URL}/task/view_todo/${params.id}`, {
         headers: {
@@ -32,8 +49,7 @@ const Login = () => {
     };
     gettingTodo();  
   }, []);
-  const dispatch = useDispatch();
-  const params = useParams();
+  // form validation
   const formik = useFormik({
     initialValues: {
       title: myTitle,
@@ -60,9 +76,7 @@ const Login = () => {
             },
           }
         );
-
-        alert("Successfully");
-        // navigate to home
+        alert("Todo Updated Successfully");
         navigate("/todos");
       } catch (error) {
         console.error("error", error);
@@ -153,4 +167,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Edit;

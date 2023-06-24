@@ -1,19 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Container, FloatingLabel, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import { selectUser } from "../../feature/auth/authSlice";
-import { useSelector } from "react-redux";
+import { selectUser,userLogout } from "../../feature/auth/authSlice";
+import { useSelector,useDispatch } from "react-redux";
 import axios from "axios";
 import { BACKEND_URL } from "../../constants/constant";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
 
 function Add({ todouniqueId, handleCallBack }) {
   const [newTodo, setNewTodo] = useState("");
   const userData = useSelector(selectUser);
-
+  const dispatch=useDispatch();
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       title: "",
@@ -44,6 +46,12 @@ function Add({ todouniqueId, handleCallBack }) {
       }
     },
   });
+  useEffect(()=>{
+    if(!userData.token){
+      dispatch(userLogout());
+      navigate("/");
+    } 
+  })
   return (
     <div>
       <Container className="container">
@@ -56,7 +64,11 @@ function Add({ todouniqueId, handleCallBack }) {
               }}
               className="p-5"
             >
-              <h3 className="text-center">ADD TODO</h3>
+              <div className="d-flex">
+               <div style={{flexGrow: "8"}} className="d-flex justify-content-center"> <h3 className="text-center">ADD TODO</h3></div>
+                <i style={{flexGrow: "1"}} onClick={()=>{ handleCallBack()}} className="fa-solid fa-xmark fa-sm"></i>
+              </div>
+
               <Form onSubmit={formik.handleSubmit}>
                 <InputGroup className="mb-3">
                   <InputGroup.Text id="basic-addon1">title</InputGroup.Text>
@@ -100,7 +112,12 @@ function Add({ todouniqueId, handleCallBack }) {
                     ""
                   )}
                 </div>
-                <Button type="submit" className="mt-2" variant="warning" size="md">
+                <Button
+                  type="submit"
+                  className="mt-2"
+                  variant="warning"
+                  size="md"
+                >
                   Post
                 </Button>
               </Form>

@@ -5,8 +5,8 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { BACKEND_URL } from "../../constants/constant";
 import axios from "axios";
-import { selectUser } from "../../feature/auth/authSlice";
-import { useSelector } from "react-redux";
+import { selectUser,userLogout } from "../../feature/auth/authSlice";
+import { useSelector,useDispatch } from "react-redux";
 import "./todolist.css";
 import Add from "../add/add";
 
@@ -14,9 +14,8 @@ function TodoList() {
   const [showAddTodo, setShowAddTodo] = useState(false);
   const [todos, setTodos] = useState([]);
   const userData = useSelector(selectUser);
-  const params = useParams();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log("userData", userData);
   const fetchAllTodos = async () => {
     try {
       const allTodos = await axios.get(`${BACKEND_URL}/task/all_todo`, {
@@ -65,6 +64,11 @@ function TodoList() {
   };
 
   useEffect(() => {
+    if(!userData.token){
+      dispatch(userLogout());
+      navigate("/");
+      return;
+    } 
     fetchAllTodos();
   }, []);
 
@@ -79,8 +83,7 @@ function TodoList() {
             </Button>
           ) : null}
           {showAddTodo ? <Add handleCallBack={callBacktochild} /> : null}
-
-          {todos.map((allTodos) => (
+          {todos.length ? todos.map((allTodos) => (
             <div key={allTodos._id} className="mt-2">
               <InputGroup className="mb-3">
                 <InputGroup.Text
@@ -111,7 +114,17 @@ function TodoList() {
                 </InputGroup.Text>
               </InputGroup>
             </div>
-          ))}
+          )):  <Container className="container">
+          <Row className="align-items-center">
+            <Col className="my-auto">
+              <div className="d-flex justify-content-center">
+                  <h1 className="animate__animated animate__bounce headingHover">
+                    PLEASE ADD TODO
+                  </h1>
+                </div>
+            </Col>
+          </Row>
+        </Container> }  
         </Col>
       </Row>
     </Container>

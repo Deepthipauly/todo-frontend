@@ -13,7 +13,6 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     userLogin: (state, action) => {
-      console.log("updated user data", action);
       state.user = action.payload;
     },
 
