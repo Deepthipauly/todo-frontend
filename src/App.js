@@ -4,6 +4,8 @@ import "bootswatch/dist/quartz/bootstrap.min.css";
 import Home from './components/home/home';
 import Login from './components/login/login';
 import Register from './components/register/register';
+import TodoList from './components/todoList/todoList';
+
 
 
 const router =createBrowserRouter([
@@ -19,6 +21,10 @@ element: <Home/>},
 
 {path:"/auth/register",
 element:<Register/>
+},
+
+{path:"/todo",
+element:<TodoList/>
 }
 
 

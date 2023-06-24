@@ -8,6 +8,8 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { Link } from "react-router-dom";
+import { BACKEND_URL } from "../../constants/constant";
+
 
 const Register = () => {
   const navigate = useNavigate();
@@ -37,7 +39,7 @@ const Register = () => {
 
     onSubmit: async (values) => {
       try {
-        await axios.post("http://localhost:4000/auth/register", {
+        await axios.post(`${BACKEND_URL}/auth/register`, {
           email: values.email,
           password: values.password,
         });

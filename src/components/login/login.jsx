@@ -3,17 +3,19 @@ import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { Link } from "react-router-dom";
-import "./login.css"
+import { BACKEND_URL } from "../../constants/constant";
+import { userLogin } from "../../feature/auth/authSlice";
+import "./login.css";
 
 const Login = () => {
   const navigate = useNavigate();
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -32,7 +34,7 @@ const Login = () => {
 
     onSubmit: async (values) => {
       try {
-        const loginForm = await axios.post("http://localhost:4000/auth/login", {
+        const loginForm = await axios.post(`${BACKEND_URL}/auth/login`, {
           email: values.email,
           password: values.password,
         });
@@ -41,13 +43,12 @@ const Login = () => {
           token: loginForm.data.data.token,
           email: loginForm.data.data.email,
           userId: loginForm.data.data.userId,
-          accountType: loginForm.data.data.accountType,
         };
-        // dispatch(userLogin(loginData));
+        dispatch(userLogin(loginData));
 
         alert("Login Successfully");
         // navigate to home
-        navigate("/");
+        navigate("/todo");
       } catch (error) {
         console.error("error", error);
         alert(error.response.data.error || "something went wrong");
@@ -117,11 +118,8 @@ const Login = () => {
                 </Button>
                 <p className="mt-2">
                   Don't have an Account?
-                  <span
-                    href="">
-                    <Link className="linkStyle"
-                      to={"/auth/register"}
-                    >
+                  <span href="">
+                    <Link className="linkStyle" to={"/auth/register"}>
                       Register here
                     </Link>
                   </span>
