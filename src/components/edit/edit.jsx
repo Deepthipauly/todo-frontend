@@ -1,26 +1,45 @@
-import React from "react";
+import React,{useEffect, useState } from "react";
 import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import { Link } from "react-router-dom";
+import { Link,useParams } from "react-router-dom";
 import { BACKEND_URL } from "../../constants/constant";
-import { userLogin } from "../../feature/auth/authSlice";
+import { selectUser, userLogin } from "../../feature/auth/authSlice";
+
 
 const Login = () => {
   const navigate = useNavigate();
+  const [myTitle, setMyTitle] = useState("");
+  const [myDescription, setMyDescription] = useState("");
+  const [status, setStatus] = useState("INPROGRESS");
+  const userData = useSelector(selectUser);
+  useEffect(() => {
+    const gettingTodo = async () => {
+      const response = await axios.get(`${BACKEND_URL}/task/view_todo/${params.id}`, {
+        headers: {
+          access_token: userData.token,
+        },
+      });
+      setMyTitle(response.data.data.title);
+      setMyDescription(response.data.data.description);
+      setStatus(response.data.data.status);
+    };
+    gettingTodo();  
+  }, []);
   const dispatch = useDispatch();
+  const params = useParams();
   const formik = useFormik({
     initialValues: {
-      title: "",
-      description: "",
+      title: myTitle,
+      description: myDescription,
     },
-
+    enableReinitialize: true,
     validationSchema: Yup.object({
       title: Yup.string().required("Title is required"),
       description: Yup.string().required("Please Enter your description"),
@@ -28,10 +47,19 @@ const Login = () => {
 
     onSubmit: async (values) => {
       try {
-        await axios.post(`${BACKEND_URL}/auth/login`, {
-          title: values.title,
-          description: values.description,
-        });
+        await axios.patch(
+          `${BACKEND_URL}/task/edit_todo/${params.id}`,
+          {
+            title: values.title,
+            description: values.description,
+            status,
+          },
+          {
+            headers: {
+              access_token: userData.token,
+            },
+          }
+        );
 
         alert("Successfully");
         // navigate to home
@@ -42,6 +70,7 @@ const Login = () => {
       }
     },
   });
+
   return (
     <div>
       <Container className="container">
@@ -57,13 +86,12 @@ const Login = () => {
               <h3 className="text-center">EDIT TODO</h3>
               <Form onSubmit={formik.handleSubmit}>
                 <InputGroup className="mb-3">
-                  <InputGroup.Text id="basic-addon1">title</InputGroup.Text>
+                  <InputGroup.Text id="basic-addon1">Title</InputGroup.Text>
                   <Form.Control
                     id="title"
                     placeholder="title"
                     aria-label="title"
                     name="title"
-                    type="title"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.title}
@@ -83,9 +111,7 @@ const Login = () => {
                   <Form.Control
                     id="description"
                     placeholder="description"
-                    aria-label="description"
                     name="description"
-                    type="description"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.description}
@@ -102,6 +128,9 @@ const Login = () => {
                   className="me-3 btn btn-primary mt-1"
                   size="md"
                   type="submit"
+                  onClick={() => {
+                    setStatus("INPROGRESS");
+                  }}
                 >
                   INPROGRESS
                 </Button>
@@ -109,6 +138,9 @@ const Login = () => {
                   className="me-3 btn btn-primary mt-1"
                   size="md"
                   type="submit"
+                  onClick={() => {
+                    setStatus("COMPLETED");
+                  }}
                 >
                   COMPLETED
                 </Button>

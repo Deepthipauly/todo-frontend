@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import dayjs from "dayjs";
+import { Button, Col, Container, Row, Spinner } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { BACKEND_URL } from "../../constants/constant";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { selectUser } from "../../feature/auth/authSlice";
 
 function Todo() {
@@ -33,26 +34,46 @@ function Todo() {
     todo(params.id);
   }, []);
 
-  return (
-    <Container>
-      <Row className="align-items-center" style={{ height: "85vh" }}>
+  let template = (
+    <Container className="container">
+      <Row className="align-items-center" style={{ height: "100vh" }}>
         <Col className="my-auto">
           <div className="d-flex justify-content-center">
-            <Card>
-              <Card.Body>
-                <Card.Title>
-                  {viewtodos?.title}
-                  <i class="fa-sharp fa-solid fa-file-pen fa-beat-fade ms-1"></i>{" "}
-                </Card.Title>
-                <Card.Text>{viewtodos?.description}</Card.Text>
-                <Card.Text>{viewtodos?.updatedAt}</Card.Text>
-              </Card.Body>
-            </Card>
+            <Spinner animation="grow" variant="warning" />
           </div>
         </Col>
       </Row>
     </Container>
   );
+  if (viewtodos?.title) {
+    template = (
+      <Container>
+        <Row className="align-items-center" style={{ height: "85vh" }}>
+          <Col className="my-auto">
+            <div className="d-flex justify-content-center">
+              <Card>
+                <Card.Body className="bg-primary">
+                  <Card.Title className="fs-2">
+                    Title : {viewtodos?.title}
+                  <Link to={`/edit/${viewtodos._id}`}>  <i class="fa-sharp fa-solid fa-file-pen fa-beat-fade ms-1"></i></Link>
+                  </Card.Title>
+                  <Card.Text className="fs-3">
+                    Description : {viewtodos?.description}
+                  </Card.Text>
+                  <Card.Text className="fs-5">
+                    <i className="fa-solid fa-clock fa-bounce"></i>{" "}
+                    {dayjs(viewtodos?.updatedAt).format("DD/MM/YY hh:mm A")}
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
+
+  return template;
 }
 
 export default Todo;
