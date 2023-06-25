@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSelector,useDispatch } from "react-redux";
 
@@ -29,6 +29,7 @@ function TodoList() {
           access_token: userData.token,
         },
       });
+      console.log("allTodos",allTodos);
       setTodos(allTodos.data.data);
     } catch (e) {
       console.log("error in fetch todos", e);

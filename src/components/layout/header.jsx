@@ -1,8 +1,8 @@
 // package import
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 // import css
 import "./header.css";
@@ -10,22 +10,19 @@ import "./header.css";
 import { BACKEND_URL } from "../../constants/constant";
 import { selectUser, userLogout } from "../../feature/auth/authSlice";
 
-
-
-
 function Header() {
   const userData = useSelector(selectUser);
-  const dispatch=useDispatch()
-  const navigate=useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const logout = async () => {
     try {
-      if(!userData.token){
+      if (!userData.token) {
         dispatch(userLogout());
         navigate("/");
         return;
-      } 
-      const response = await axios.post(
+      }
+      await axios.post(
         `${BACKEND_URL}/auth/logout`,
         {},
         {
@@ -34,7 +31,6 @@ function Header() {
           },
         }
       );
-      console.log("response", response);
       dispatch(userLogout());
       navigate("/");
     } catch (error) {

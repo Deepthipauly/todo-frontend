@@ -1,6 +1,6 @@
 // package import
-import React, { useEffect, useState } from "react";
-import { Col, Container, FloatingLabel, Row } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
@@ -14,8 +14,7 @@ import * as Yup from "yup";
 import { BACKEND_URL } from "../../constants/constant";
 import { selectUser,userLogout } from "../../feature/auth/authSlice";
 
-function Add({ todouniqueId, handleCallBack }) {
-  const [newTodo, setNewTodo] = useState("");
+function Add({ handleCallBack }) {
   const userData = useSelector(selectUser);
   const dispatch=useDispatch();
   const navigate = useNavigate();
