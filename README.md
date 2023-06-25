@@ -1,5 +1,5 @@
 # TODO APP
-A React app for creating todos.Todo app can be used to create personalized todos,update and delete todos.Todo app will list all todos.
+A React app for creating todos.Todo app can be used to create personalized todos,update and delete todos.Todo app will list all todos
 
 
 # TO start APP
@@ -14,7 +14,7 @@ A React app for creating todos.Todo app can be used to create personalized todos
 ### User journey
 1. user register (email/password)
 2. user login (email/password)
-3. todos list
+3. todos list - list all todos
 4. todo detail page
 5. todo edit 
 6. todo delete
