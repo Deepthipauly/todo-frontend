@@ -9,7 +9,7 @@ A React app for creating todos.Todo app can be used to create personalized todos
 4. clone the backend repo - https://github.com/Deepthipauly/todo-Backend.git
 5. cd into the folder && npm install
 6. update the .env file
-7. To start the server - npm run server:dev (in nodemon) / npm start
+7. To start the server - npm run start:server (in nodemon) / npm start
 
 ### User journey
 1. user register (email/password)
