@@ -1,14 +1,20 @@
+// package import
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { BACKEND_URL } from "../../constants/constant";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { selectUser,userLogout } from "../../feature/auth/authSlice";
 import { useSelector,useDispatch } from "react-redux";
-import "./todolist.css";
+
+// file import
 import Add from "../add/add";
+import { selectUser,userLogout } from "../../feature/auth/authSlice";
+import { BACKEND_URL } from "../../constants/constant";
+
+// css import
+import "./todolist.css";
+
 
 function TodoList() {
   const [showAddTodo, setShowAddTodo] = useState(false);
@@ -39,7 +45,7 @@ function TodoList() {
       });
       fetchAllTodos();
     } catch (e) {
-      console.log("error in deleting todos", e);
+      console.error("error in deleting todos", e);
       alert("unable to delete todos");
     }
   };

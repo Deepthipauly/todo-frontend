@@ -9,9 +9,13 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { Link } from "react-router-dom";
+
+// css import
+import "./login.css";
+
+// file import
 import { BACKEND_URL } from "../../constants/constant";
 import { userLogin } from "../../feature/auth/authSlice";
-import "./login.css";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -38,7 +42,7 @@ const Login = () => {
           email: values.email,
           password: values.password,
         });
-        // data dispatch to aut slice
+        // data dispatch to auth slice
         const loginData = {
           token: loginForm.data.data.token,
           email: loginForm.data.data.email,

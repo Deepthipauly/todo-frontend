@@ -1,7 +1,10 @@
+// package import
 import React from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
-import "./home.css";
 import { Link } from "react-router-dom";
+
+// css import
+import "./home.css";
 
 function Home() {
   return (

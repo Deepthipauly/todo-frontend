@@ -1,5 +1,7 @@
+// package import
 import { createSlice } from "@reduxjs/toolkit";
 
+// reducer and action using redux toolkit
 const initialState = {
   user: {
     token: null,
@@ -27,11 +29,10 @@ export const userSlice = createSlice({
 });
 
 //export actions
-
 export const { userLogin, userLogout } = userSlice.actions;
 
 //export selector
-
 export const selectUser = (state) => state.userData.user;
 
+// export reducer
 export default userSlice.reducer;

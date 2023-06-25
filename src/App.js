@@ -1,6 +1,7 @@
+// package import
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import "./App.css";
-import "bootswatch/dist/quartz/bootstrap.min.css";
+
+// file import
 import Home from "./components/home/home";
 import Login from "./components/login/login";
 import Register from "./components/register/register";
@@ -9,29 +10,45 @@ import Todo from "./components/todo/todo";
 import Header from "./components/layout/header";
 import Edit from "./components/edit/edit";
 
+// css import
+import "bootswatch/dist/quartz/bootstrap.min.css";
 
+// defined routes
 const router = createBrowserRouter([
-  { path: "/", element: <Home /> },
-
   {
     path: "/auth/login",
     element: <Login />,
   },
 
-  { path: "/auth/register", element:<Register />},
+  { path: "/auth/register", element: <Register /> },
 
-  { path: "/todos", element: <><Header/> <TodoList /></> },
+  {
+    path: "/todos",
+    element: (
+      <>
+        <Header /> <TodoList />
+      </>
+    ),
+  },
 
   {
     path: "/todo/:id",
-    element: <><Header/> <Todo /></>,
+    element: (
+      <>
+        <Header /> <Todo />
+      </>
+    ),
   },
 
-{
-  path:"/edit/:id",
-  element:<><Header/> <Edit /></>
-}
-
+  {
+    path: "/edit/:id",
+    element: (
+      <>
+        <Header /> <Edit />
+      </>
+    ),
+  },
+  { path: "/", element: <Home /> },
 ]);
 
 function App() {

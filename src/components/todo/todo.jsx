@@ -1,12 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
-import { Button, Col, Container, Row, Spinner } from "react-bootstrap";
+import { Col, Container, Row, Spinner } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
-import { BACKEND_URL } from "../../constants/constant";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+
+// file import
 import { selectUser } from "../../feature/auth/authSlice";
+import { BACKEND_URL } from "../../constants/constant";
 
 function Todo() {
   const [viewtodos, setViewTodos] = useState();

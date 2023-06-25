@@ -8,8 +8,12 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { Link } from "react-router-dom";
+
+// file import
 import { BACKEND_URL } from "../../constants/constant";
 
+// import css
+import "./register.css";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -138,7 +142,7 @@ const Register = () => {
                   Register
                 </Button>
                 <p>
-                  Already have an account?{" "}
+                  Already have an account?
                   <Link className="linkStyle"
                     to={"/auth/login"}
                   >
