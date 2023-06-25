@@ -30,3 +30,16 @@ A React app for creating todos.Todo app can be used to create personalized todos
 7. animate.css - animation
 8. dayjs - date format
 9. redux toolkit - for state management
+
+## images
+#### home page
+![first](https://github.com/Deepthipauly/todo-frontend/assets/121651934/be43c9e6-3d52-4662-9511-7db4855b826a)
+
+#### add todo page
+![second](https://github.com/Deepthipauly/todo-frontend/assets/121651934/b6089194-e69b-45c8-9589-b1dfda8f908b)
+
+#### todo details page
+![third](https://github.com/Deepthipauly/todo-frontend/assets/121651934/fad7b0df-9b5a-4558-ba36-0b1fa8556871)
+
+#### todo edit page 
+![fourth](https://github.com/Deepthipauly/todo-frontend/assets/121651934/bbc2f515-fb16-40b1-b234-f33de7b1646e)
